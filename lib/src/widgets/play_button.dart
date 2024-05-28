@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../models/audioplayer_model.dart';
 
 class PlayButton extends StatefulWidget {
   const PlayButton({super.key});
@@ -32,12 +35,17 @@ class _PlayButtonState extends State<PlayButton>
       highlightElevation: 0,
       backgroundColor: const Color(0xfff8cb51),
       onPressed: () {
+        final audioPlayerModel =
+            Provider.of<AudioPlayerModel>(context, listen: false);
+
         if (isPlaying) {
           playAnimation.reverse();
           isPlaying = false;
+          audioPlayerModel.controller.stop();
         } else {
           playAnimation.forward();
           isPlaying = true;
+          audioPlayerModel.controller.repeat();
         }
       },
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),

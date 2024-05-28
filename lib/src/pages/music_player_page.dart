@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../models/audioplayer_model.dart';
 import '../widgets/widgets.dart';
 
 class MusicPlayerPage extends StatelessWidget {
@@ -7,20 +9,23 @@ class MusicPlayerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-        body: Stack(
-      children: [
-        Background(),
-        Column(
-          children: [
-            CustomAppbar(),
-            _TrackAlbumLength(),
-            _TitlePlay(),
-            Expanded(child: LyricsWheel())
-          ],
-        ),
-      ],
-    ));
+    return MultiProvider(
+      providers: [ChangeNotifierProvider(create: (_) => AudioPlayerModel())],
+      child: const Scaffold(
+          body: Stack(
+        children: [
+          Background(),
+          Column(
+            children: [
+              CustomAppbar(),
+              _TrackAlbumLength(),
+              _TitlePlay(),
+              Expanded(child: LyricsWheel())
+            ],
+          ),
+        ],
+      )),
+    );
   }
 }
 
