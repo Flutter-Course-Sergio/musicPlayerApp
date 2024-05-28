@@ -7,29 +7,27 @@ class TrackDuration extends StatelessWidget {
   Widget build(BuildContext context) {
     final textStyle = TextStyle(color: Colors.white.withOpacity(0.4));
 
-    return Container(
-      child: Column(
-        children: [
-          Text(
-            '0:00',
-            style: textStyle,
-          ),
-          const SizedBox(height: 10),
-          Stack(
-            children: [
-              _TrackProgressBar(Colors.white.withOpacity(0.1), 230),
-              Positioned(
-                  bottom: 0,
-                  child: _TrackProgressBar(Colors.white.withOpacity(0.8), 150)),
-            ],
-          ),
-          const SizedBox(height: 10),
-          Text(
-            '0:00',
-            style: textStyle,
-          )
-        ],
-      ),
+    return Column(
+      children: [
+        Text(
+          '0:00',
+          style: textStyle,
+        ),
+        const SizedBox(height: 10),
+        Stack(
+          children: [
+            _TrackProgressBar(Colors.white.withOpacity(0.1), 230),
+            Positioned(
+                bottom: 0,
+                child: _TrackProgressBar(Colors.white.withOpacity(0.8), 150)),
+          ],
+        ),
+        const SizedBox(height: 10),
+        Text(
+          '0:00',
+          style: textStyle,
+        )
+      ],
     );
   }
 }
