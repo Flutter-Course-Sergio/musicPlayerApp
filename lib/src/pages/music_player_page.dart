@@ -7,9 +7,14 @@ class MusicPlayerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
         body: Column(
-      children: [CustomAppbar()],
+      children: [
+        CustomAppbar(),
+        Row(
+          children: [TrackImage(), TrackDuration()],
+        )
+      ],
     ));
   }
 }
