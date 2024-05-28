@@ -9,7 +9,12 @@ class MusicPlayerPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
         body: Column(
-      children: [CustomAppbar(), _TrackAlbumLength(), _TitlePlay()],
+      children: [
+        CustomAppbar(),
+        _TrackAlbumLength(),
+        _TitlePlay(),
+        Expanded(child: LyricsWheel())
+      ],
     ));
   }
 }
