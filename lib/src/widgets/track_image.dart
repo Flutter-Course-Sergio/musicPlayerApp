@@ -6,18 +6,18 @@ class TrackImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       width: 250,
       height: 250,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(200),
-          gradient: LinearGradient(begin: Alignment.topLeft, colors: [
+          gradient: const LinearGradient(begin: Alignment.topLeft, colors: [
             Color(0xff484750),
             Color(0xff1e1c24),
           ])),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(200),
-        child: Stack(
+        child: const Stack(
           alignment: Alignment.center,
           children: [
             Image(image: AssetImage('assets/images/aurora.jpg')),
