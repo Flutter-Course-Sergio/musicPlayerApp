@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../models/audioplayer_model.dart';
 
 class TrackDuration extends StatelessWidget {
   const TrackDuration({super.key});
@@ -6,11 +9,12 @@ class TrackDuration extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textStyle = TextStyle(color: Colors.white.withOpacity(0.4));
+    final audioPlayerModel = Provider.of<AudioPlayerModel>(context);
 
     return Column(
       children: [
         Text(
-          '0:00',
+          audioPlayerModel.songTotalDuration,
           style: textStyle,
         ),
         const SizedBox(height: 10),
@@ -19,12 +23,13 @@ class TrackDuration extends StatelessWidget {
             _TrackProgressBar(Colors.white.withOpacity(0.1), 230),
             Positioned(
                 bottom: 0,
-                child: _TrackProgressBar(Colors.white.withOpacity(0.8), 150)),
+                child: _TrackProgressBar(Colors.white.withOpacity(0.8),
+                    230 * audioPlayerModel.percentage)),
           ],
         ),
         const SizedBox(height: 10),
         Text(
-          '0:00',
+          audioPlayerModel.currentSecond,
           style: textStyle,
         )
       ],

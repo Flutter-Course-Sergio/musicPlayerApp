@@ -1,3 +1,4 @@
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -13,7 +14,10 @@ class PlayButton extends StatefulWidget {
 class _PlayButtonState extends State<PlayButton>
     with SingleTickerProviderStateMixin {
   bool isPlaying = false;
+  bool firstTime = true;
   late AnimationController playAnimation;
+
+  final assetAudioPlayer = AssetsAudioPlayer();
 
   @override
   void initState() {
@@ -26,6 +30,23 @@ class _PlayButtonState extends State<PlayButton>
   void dispose() {
     playAnimation.dispose();
     super.dispose();
+  }
+
+  void open() {
+    final audioPlayerModel =
+        Provider.of<AudioPlayerModel>(context, listen: false);
+
+    assetAudioPlayer.open(Audio('assets/music/Breaking-Benjamin-Far-Away.mp3'),
+        autoStart: true, showNotification: true);
+
+    assetAudioPlayer.currentPosition.listen((duration) {
+      audioPlayerModel.current = duration;
+    });
+
+    assetAudioPlayer.current.listen((playingAudio) {
+      audioPlayerModel.songDuration =
+          playingAudio?.audio.duration ?? Duration(seconds: 0);
+    });
   }
 
   @override
@@ -46,6 +67,13 @@ class _PlayButtonState extends State<PlayButton>
           playAnimation.forward();
           isPlaying = true;
           audioPlayerModel.controller.repeat();
+        }
+
+        if (firstTime) {
+          open();
+          firstTime = false;
+        } else {
+          assetAudioPlayer.playOrPause();
         }
       },
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),

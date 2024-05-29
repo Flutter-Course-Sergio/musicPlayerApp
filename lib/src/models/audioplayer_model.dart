@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class AudioPlayerModel with ChangeNotifier {
   late AnimationController controller;
-  Duration _songDuration = const Duration(microseconds: 0);
-  Duration _current = const Duration(microseconds: 0);
+  late Duration _songDuration;
+  late Duration _current;
   bool _playing = false;
 
   bool get playing => _playing;
